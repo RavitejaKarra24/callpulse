@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Outer glowing circle aura for depth -->
+    <path
+        android:fillColor="#15FFFFFF"
+        android:pathData="M54,54m-34,0a34,34 0 1,1 68,0a34,34 0 1,1 -68,0" />
+
+    <!-- Central Round Badge (Theme colored cyan) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M54,54m-28,0a28,28 0 1,1 56,0a28,28 0 1,1 -56,0" />
+
+    <!-- Inner Circle Badge (White) for contrast -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,54m-23,0a23,23 0 1,1 46,0a23,23 0 1,1 -46,0" />
+
+    <!-- Stylized Phone Receiver Icon on the left -->
+    <path
+        android:fillColor="#1A237E"
+        android:pathData="M39.5,41 c-0.6,-0.6 -1.6,-0.6 -2.2,0 l-2,2 c-0.8,0.8 -0.9,1.9 -0.4,2.9 c1.7,3.1 4.1,5.5 7.2,7.2 c1,0.5 2.1,0.4 2.9,-0.4 l2,-2 c0.6,-0.6 0.6,-1.6 0,-2.2 l-3.1,-3.1 c-0.6,-0.6 -1.6,-0.6 -2.2,0 l-0.8,0.8 c-0.5,0.5 -1.2,0.4 -1.7,-0.1 c-1,-1 -2,-2 -3,-3 c-0.5,-0.5 -0.6,-1.2 -0.1,-1.7 l0.8,-0.8 c0.6,-0.6 0.6,-1.6 0,-2.2 l-3.1,-3.1 z" />
+
+    <!-- Ascending Analytics Bars on the right (Theme Navy) -->
+    <!-- Bar 1 (Short) -->
+    <path
+        android:fillColor="#00B0FF"
+        android:pathData="M56,58 h4 v8 h-4 z" />
+    
+    <!-- Bar 2 (Medium) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M63,50 h4 v16 h-4 z" />
+
+    <!-- Bar 3 (Tall) -->
+    <path
+        android:fillColor="#1A237E"
+        android:pathData="M70,42 h4 v24 h-4 z" />
+
+</vector>

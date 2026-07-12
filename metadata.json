@@ -1,0 +1,6 @@
+{
+  "name": "Call Log Analyzer",
+  "description": "A beautiful presentation of call records, usage statistics, frequent contacts, and trend visualizations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

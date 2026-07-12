@@ -1,0 +1,58 @@
+# Build CallPulse debug APK without installing Android SDK on the host.
+# Must run as linux/amd64 because Android build-tools/AAPT2 ship as x86_64 only.
+#
+# Usage:
+#   docker build --platform=linux/amd64 -f Dockerfile.apk -t callpulse-apk .
+#   docker create --name callpulse-out callpulse-apk
+#   docker cp callpulse-out:/output/app-debug.apk ./app-debug.apk
+#   docker rm callpulse-out
+
+FROM --platform=linux/amd64 eclipse-temurin:17-jdk-jammy
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    ANDROID_HOME=/opt/android-sdk \
+    ANDROID_SDK_ROOT=/opt/android-sdk \
+    GRADLE_USER_HOME=/root/.gradle
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl unzip git ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Android command-line tools
+RUN mkdir -p ${ANDROID_HOME}/cmdline-tools \
+    && curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -o /tmp/cmdtools.zip \
+    && unzip -q /tmp/cmdtools.zip -d ${ANDROID_HOME}/cmdline-tools \
+    && mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest \
+    && rm /tmp/cmdtools.zip
+
+ENV PATH="${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools"
+
+# SDK packages required by this project (AGP 9 / compileSdk 36)
+RUN yes | sdkmanager --licenses >/dev/null \
+    && sdkmanager \
+        "platform-tools" \
+        "platforms;android-36" \
+        "build-tools;36.0.0"
+
+# Gradle (AGP 9.1.x requires >= 9.3.1)
+ENV GRADLE_VERSION=9.3.1
+RUN curl -fsSL "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o /tmp/gradle.zip \
+    && unzip -q /tmp/gradle.zip -d /opt \
+    && GRADLE_HOME="$(find /opt -maxdepth 1 -type d -name 'gradle-*' | head -n1)" \
+    && ln -sf "${GRADLE_HOME}/bin/gradle" /usr/local/bin/gradle \
+    && gradle --version \
+    && rm /tmp/gradle.zip
+
+WORKDIR /project
+COPY . /project
+
+ENV GRADLE_OPTS="-Dorg.gradle.daemon=false"
+
+RUN mkdir -p /output \
+    && printf 'sdk.dir=/opt/android-sdk\n' > local.properties \
+    && touch .env \
+    && gradle :app:assembleDebug --no-daemon --no-configuration-cache --stacktrace \
+    && cp app/build/outputs/apk/debug/app-debug.apk /output/app-debug.apk \
+    && ls -lh /output/app-debug.apk
+
+CMD ["ls", "-lh", "/output/app-debug.apk"]
