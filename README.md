@@ -14,7 +14,20 @@ View in AI Studio: https://ai.studio/apps/81452cd9-53bf-4ea4-a850-7516cf6d2c74
 - **Distribution** — Inbound / outbound / missed / rejected breakdown with busiest hours of day
 - **Contacts & history** — Top contacts by talk time plus searchable call history
 
-## Run Locally
+## Download & install (no build required)
+
+A prebuilt debug APK is included for non-developers:
+
+**[Download app-debug.apk](./app-debug.apk)**
+
+1. On your Android phone, open the APK download (or transfer the file to the device).
+2. If prompted, allow **Install unknown apps** for your browser or file manager.
+3. Install and open **CallPulse**.
+4. Grant **Phone / call log** permission when asked so real call data can load (or leave Demo mode on for sample data).
+
+> This is a **debug** build for easy sideloading. It is not a Play Store release.
+
+## Run Locally (developers)
 
 **Prerequisites:** [Android Studio](https://developer.android.com/studio)
 
