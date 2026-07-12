@@ -6,13 +6,13 @@ View in AI Studio: https://ai.studio/apps/81452cd9-53bf-4ea4-a850-7516cf6d2c74
 
 ## Screenshots
 
-| Dashboard & trends | Call distribution & busiest hours | Top contacts |
+| Dashboard & trends | Call distribution & busiest hours | Top contacts & history |
 |:---:|:---:|:---:|
-| ![Dashboard showing talk time, total calls, and call trend](img1.jpeg) | ![Call distribution donut chart and busiest hours](img2.jpeg) | ![Top contacts ranked by talk time](img3.jpeg) |
+| ![Dashboard showing talk time, total calls, and call trend](img1.jpeg) | ![Call distribution donut chart and busiest hours](img2.jpeg) | ![Top contacts and searchable call history](img3.jpeg) |
 
 - **Dashboard** — Talk time, total calls, average duration, missed rate, and interactive call trends
 - **Distribution** — Inbound / outbound / missed / rejected breakdown with busiest hours of day
-- **Contacts** — Top contacts ranked by talk time
+- **Contacts & history** — Top contacts by talk time plus searchable call history
 
 ## Run Locally
 
